@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prueba de Base de Datos</title>
+</head>
+<body>
+  <h1>Usuarios desde la base de datos</h1>
+  <ul id="listaUsuarios"></ul>
+
+  <script>
+    fetch("http://localhost:3000/usuarios")
+      .then(response => response.json())
+      .then(usuarios => {
+        const lista = document.getElementById("listaUsuarios");
+        usuarios.forEach(usuario => {
+          const li = document.createElement("li");
+          li.textContent = JSON.stringify(usuario);
+          lista.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error("Error al obtener usuarios:", error);
+      });
+  </script>
+</body>
+</html>

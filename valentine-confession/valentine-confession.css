@@ -1,0 +1,398 @@
+* {
+	box-sizing: border-box;
+}
+
+h1,
+p {
+	font-family: "Quicksand";
+	font-optical-sizing: auto;
+}
+
+h1 {
+	font-weight: 200;
+}
+
+body {
+	margin: 0px;
+}
+
+.instruction {
+	position: absolute;
+	font-size: 1.6rem;
+	color: rgba(255, 0, 0, 0.554);
+	top: 36%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.heart {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	transition: transform 2s;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.heart>img {
+	width: 50px;
+	height: auto;
+
+	animation-name: beat;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-play-state: running;
+}
+
+.message {
+	padding: 25px;
+	background-color: #eee;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23f8f8f8'/><circle cx='16' cy='16' r='2' fill='%23e0e0e0'/><circle cx='48' cy='16' r='2' fill='%23e0e0e0'/><circle cx='32' cy='32' r='1.5' fill='%23d0d0d0'/><circle cx='16' cy='48' r='2' fill='%23e0e0e0'/><circle cx='48' cy='48' r='2' fill='%23e0e0e0'/></svg>");
+	font-family: "Quicksand", serif;
+	font-optical-sizing: auto;
+	font-size: clamp(16px, 10vw, 17px);
+	text-align: justify;
+	line-height: 1.5em;
+	width: 80%;
+	max-width: 550px;
+	height: 78%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 0;
+
+	animation-name: openmsg;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-play-state: paused;
+	animation-fill-mode: forwards;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	border-radius: 5px;
+	overflow: scroll;
+	scrollbar-width: none;
+}
+
+.message .sincere {
+	text-align: left;
+	font-family: "Cinzel, serif";
+	font-size: 14px;
+	line-height: 1.2em;
+}
+
+.message .sincere p {
+	margin: 0;
+}
+
+@keyframes beat {
+	0% {
+		width: 50px;
+	}
+
+	25% {
+		width: 58px;
+	}
+
+	30% {
+		width: 50px;
+	}
+
+	50% {
+		width: 45px;
+	}
+
+	60% {
+		width: 50px;
+	}
+
+	75% {
+		width: 58px;
+	}
+
+	100% {
+		width: 50px;
+	}
+}
+
+@keyframes openmsg {
+	0% {
+		height: 0px;
+		padding: 0px 20px;
+	}
+
+	100% {
+		height: 75%;
+		padding: 20px 20px;
+	}
+}
+
+@keyframes heartMove {
+	0% {
+		top: 50%
+	}
+
+	100% {
+		top: 85%;
+		transform: translate(-50%, 0);
+	}
+}
+
+.openNor {
+	animation-direction: normal;
+	animation-play-state: running;
+}
+
+.closeNor {
+	animation-direction: reverse;
+	animation-play-state: running;
+}
+
+.no-anim {
+	animation: none;
+}
+
+.closed {
+	height: 0px;
+	padding: 0px 20px;
+}
+
+.bottom {
+	bottom: 5px;
+}
+
+.openHer {
+	animation-name: heartMove;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-play-state: running;
+	animation-fill-mode: forwards;
+}
+
+.closeHer {
+	animation-name: heartMove;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-play-state: running;
+	animation-direction: reverse;
+	animation-fill-mode: forwards;
+}
+
+.beating>img {
+	animation-name: beat;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-play-state: running;
+}
+
+.openedHer {
+	top: 85%;
+	transform: translate(-50%, 0);
+}
+
+/* Estilos para las mariposas */
+.butterfly-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 10;
+	overflow: hidden;
+}
+
+.butterfly {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	opacity: 0;
+	transform-origin: center;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.butterfly-visible {
+	opacity: 1;
+}
+
+.butterfly svg {
+	width: 100%;
+	height: 100%;
+}
+
+/* Animaciones de vuelo para las mariposas */
+@keyframes fly1 {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	25% {
+		transform: translate(200px, -100px) rotate(15deg);
+	}
+
+	50% {
+		transform: translate(400px, -50px) rotate(-10deg);
+	}
+
+	75% {
+		transform: translate(600px, -120px) rotate(20deg);
+	}
+
+	100% {
+		transform: translate(800px, -80px) rotate(0deg);
+	}
+}
+
+@keyframes fly2 {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	25% {
+		transform: translate(-150px, -80px) rotate(-20deg);
+	}
+
+	50% {
+		transform: translate(-300px, -40px) rotate(15deg);
+	}
+
+	75% {
+		transform: translate(-450px, -100px) rotate(-15deg);
+	}
+
+	100% {
+		transform: translate(-600px, -60px) rotate(0deg);
+	}
+}
+
+@keyframes fly3 {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	25% {
+		transform: translate(100px, -150px) rotate(25deg);
+	}
+
+	50% {
+		transform: translate(200px, -200px) rotate(-20deg);
+	}
+
+	75% {
+		transform: translate(300px, -100px) rotate(15deg);
+	}
+
+	100% {
+		transform: translate(500px, -180px) rotate(0deg);
+	}
+}
+
+@keyframes fly4 {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	25% {
+		transform: translate(-100px, -120px) rotate(-15deg);
+	}
+
+	50% {
+		transform: translate(-200px, -160px) rotate(20deg);
+	}
+
+	75% {
+		transform: translate(-300px, -80px) rotate(-25deg);
+	}
+
+	100% {
+		transform: translate(-500px, -140px) rotate(0deg);
+	}
+}
+
+@keyframes fly5 {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	25% {
+		transform: translate(250px, -60px) rotate(10deg);
+	}
+
+	50% {
+		transform: translate(150px, -180px) rotate(-15deg);
+	}
+
+	75% {
+		transform: translate(400px, -140px) rotate(25deg);
+	}
+
+	100% {
+		transform: translate(700px, -100px) rotate(0deg);
+	}
+}
+
+@keyframes fly6 {
+	0% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	25% {
+		transform: translate(-180px, -90px) rotate(-25deg);
+	}
+
+	50% {
+		transform: translate(-100px, -220px) rotate(10deg);
+	}
+
+	75% {
+		transform: translate(-350px, -160px) rotate(-10deg);
+	}
+
+	100% {
+		transform: translate(-550px, -120px) rotate(0deg);
+	}
+}
+
+.butterfly1 {
+	animation: fly1 8s infinite linear;
+}
+
+.butterfly2 {
+	animation: fly2 10s infinite linear;
+}
+
+.butterfly3 {
+	animation: fly3 7s infinite linear;
+}
+
+.butterfly4 {
+	animation: fly4 9s infinite linear;
+}
+
+.butterfly5 {
+	animation: fly5 11s infinite linear;
+}
+
+.butterfly6 {
+	animation: fly6 6s infinite linear;
+}
+
+/* Estados de animación */
+.butterflies-enter {
+	animation-play-state: running;
+}
+
+.butterflies-exit {
+	animation-direction: reverse;
+	animation-play-state: running;
+}

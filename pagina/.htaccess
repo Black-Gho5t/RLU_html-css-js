@@ -1,0 +1,27 @@
+# Configuración de Apache para el proyecto Nicanor
+
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Redireccionar index.html a index.php
+RewriteRule ^index\.html$ index.php [L,R=301]
+
+# Proteger archivos de configuración
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Configuración de sesiones PHP
+php_value session.cookie_httponly 1
+php_value session.use_strict_mode 1
+
+# Mejorar la seguridad
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Página de error personalizada (opcional)
+ErrorDocument 404 /nicanor/index.php

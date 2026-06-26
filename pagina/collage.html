@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collage de Fotos</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            margin: 0;
+        }
+
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            width: 90vmin;
+            height: 90vmin;
+            border: 5px solid white;
+            gap: 2px;
+        }
+
+        .collage img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            object-position: center;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+    <div class="collage"></div>
+
+
+
+
+
+
+    <script>
+        const collage = document.querySelector(".collage");
+        let totalImagenes = 167; // Número total de imágenes en la carpeta
+        let tiempoCambio = 1500; // Tiempo en milisegundos entre cambios de imagen
+
+        function obtenerRutaImagenAleatoria() {
+            let numero = Math.floor(Math.random() * totalImagenes) + 1;
+            return `optimized/${numero}.webp`; // Ajusta la ruta según la ubicación
+        }
+
+        function cargarCollage() {
+            collage.innerHTML = "";
+            for (let i = 0; i < 36; i++) {
+                let img = document.createElement("img");
+                img.src = obtenerRutaImagenAleatoria();
+                collage.appendChild(img);
+            }
+
+            setInterval(cambiarImagenAleatoria, tiempoCambio);
+        }
+
+        function cambiarImagenAleatoria() {
+            let imagenesEnCollage = document.querySelectorAll(".collage img");
+            let indiceAleatorio = Math.floor(Math.random() * imagenesEnCollage.length);
+            let nuevaImagen = obtenerRutaImagenAleatoria();
+
+            let img = imagenesEnCollage[indiceAleatorio];
+            img.style.opacity = "0";
+            setTimeout(() => {
+                img.src = nuevaImagen;
+                img.style.opacity = "1";
+            }, 600);
+        }
+
+        cargarCollage();
+    </script>
+
+</body>
+
+</html>
